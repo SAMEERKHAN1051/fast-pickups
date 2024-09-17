@@ -1,0 +1,728 @@
+<div
+  class="card mt-3 mb-5 bg-white text-black font-bold w-full rounded-lg shadow-lg"
+>
+  <div class="card-header text-center py-6 px-4 bg-white rounded-lg">
+    <h2 class="text-2xl font-bold">Book Your Ride Instantly</h2>
+    <h5 class="text-lg text-gray-600">Barcelona Airport Transfers</h5>
+    <!-- <div class="grid md:grid-cols-3 md:gap-4 gap-2 mt-3">
+      <div class="flex items-center">
+        <input
+          type="radio"
+          class="form-radio h-5 w-5 text-blue-500"
+          id="radio1"
+          name="radio-group"
+          (change)="check(0)"
+          checked
+          aria-labelledby="label-radio1"
+        />
+        <label
+          class="ps-1 text-xs text-gray-700 cursor-pointer"
+          id="label-radio1"
+          for="radio1"
+        >
+          From Airport
+        </label>
+      </div>
+      <div class="flex items-center">
+        <input
+          type="radio"
+          class="form-radio h-5 w-5 text-blue-500"
+          id="radio2"
+          name="radio-group"
+          (change)="check(1)"
+          aria-labelledby="label-radio2"
+        />
+        <label
+          class="ps-1 text-xs text-gray-700 cursor-pointer"
+          id="label-radio2"
+          for="radio2"
+        >
+          To Airport
+        </label>
+      </div>
+      <div class="flex items-center">
+        <input
+          type="radio"
+          class="form-radio h-5 w-5 text-blue-500"
+          id="radio3"
+          name="radio-group"
+          (change)="check(2)"
+          aria-labelledby="label-radio3"
+        />
+        <label
+          class="ps-1 text-xs text-gray-700 cursor-pointer"
+          id="label-radio3"
+          for="radio3"
+        >
+          Point To Point
+        </label>
+      </div>
+    </div> -->
+  </div>
+
+  <form [formGroup]="bookingForm" class="px-4">
+    <div class="card-body pb-2">
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <ng-container>
+          <ng-container *ngTemplateOutlet="firstFieldTemplate"></ng-container>
+        </ng-container>
+        <ng-container>
+          <ng-container *ngTemplateOutlet="secondFieldTemplate"></ng-container>
+        </ng-container>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-person-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="email-address-icon"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter Your Name"
+              aria-label="Enter Your Name"
+              formControlName="name"
+            />
+          </div>
+          <div *ngIf="isSubmitted">
+            <div *ngIf="bookingForm.get('name')?.invalid">
+              <div
+                class="text-red-500 text-xs"
+                *ngIf="bookingForm.get('name')?.hasError('required')"
+              >
+                Name is required.
+              </div>
+              <div
+                class="text-red-500 text-xs"
+                *ngIf="bookingForm.get('name')?.hasError('minlength')"
+              >
+                Name should have a minimum length of 3 characters.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-envelope-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"
+                />
+              </svg>
+            </div>
+            <input
+              type="email"
+              id="email-address-icon"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter Your Email"
+              aria-label="Enter Your Email"
+              aria-describedby="basic-addon1"
+              formControlName="email"
+            />
+          </div>
+          <div *ngIf="isSubmitted">
+            <div *ngIf="bookingForm.get('email')?.invalid">
+              <div
+                class="text-xs text-red-500"
+                *ngIf="bookingForm.get('email')?.hasError('required')"
+              >
+                Email is required.
+              </div>
+              <div
+                class="text-xs text-red-500"
+                *ngIf="bookingForm.get('email')?.hasError('email')"
+              >
+                Value must Be email type.
+              </div>
+              <div
+                class="text-xs text-red-500"
+                *ngIf="bookingForm.get('email')?.hasError('pattern')"
+              >
+                Email Should Like 'xyz@gmail.com'
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-telephone-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"
+                />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="email-address-icon"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Enter Your Number"
+              aria-label="Enter Your Number"
+              aria-describedby="basic-addon1"
+              formControlName="phoneNumber"
+              (input)="onContactNumberInput($event)"
+            />
+          </div>
+          <div *ngIf="isSubmitted">
+            <div *ngIf="bookingForm.get('phoneNumber')?.invalid">
+              <div
+                class="text-xs"
+                *ngIf="bookingForm.get('phoneNumber')?.hasError('required')"
+              >
+                Phone Number is required.
+              </div>
+              <div
+                class="text-xs"
+                *ngIf="bookingForm.get('phoneNumber')?.hasError('minlength')"
+              >
+                Number must be at least 9 digits
+              </div>
+              <div
+                class="text-xs"
+                *ngIf="bookingForm.get('phoneNumber')?.hasError('maxlength')"
+              >
+                Number must be at least 9 digits
+              </div>
+              <div
+                class="text-xs"
+                *ngIf="bookingForm.get('phoneNumber')?.hasError('pattern')"
+              >
+                Number Must Start From (+).
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-calendar-date-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zm5.402 9.746c.625 0 1.184-.484 1.184-1.18 0-.832-.527-1.23-1.16-1.23-.586 0-1.168.387-1.168 1.21 0 .817.543 1.2 1.144 1.2"
+                />
+                <path
+                  d="M16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-6.664-1.21c-1.11 0-1.656-.767-1.703-1.407h.683c.043.37.387.82 1.051.82.844 0 1.301-.848 1.305-2.164h-.027c-.153.414-.637.79-1.383.79-.852 0-1.676-.61-1.676-1.77 0-1.137.871-1.809 1.797-1.809 1.172 0 1.953.734 1.953 2.668 0 1.805-.742 2.871-2 2.871zm-2.89-5.435v5.332H5.77V8.079h-.012c-.29.156-.883.52-1.258.777V8.16a13 13 0 0 1 1.313-.805h.632z"
+                />
+              </svg>
+            </div>
+            <input
+              datepicker
+              id="default-datepicker"
+              type="date"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Select date"
+              formControlName="departureDate"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-clock-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"
+                />
+              </svg>
+            </div>
+            <select
+              id="countries"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="departureHour"
+            >
+              <option *ngFor="let item of hours" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-hourglass-split"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z"
+                />
+              </svg>
+            </div>
+            <select
+              id="countries"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="departureMin"
+            >
+              <option *ngFor="let item of minutes" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-backpack-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M5 13v-3h4v.5a.5.5 0 0 0 1 0V10h1v3z" />
+                <path
+                  d="M6 2v.341C3.67 3.165 2 5.388 2 8v5.5A2.5 2.5 0 0 0 4.5 16h7a2.5 2.5 0 0 0 2.5-2.5V8a6 6 0 0 0-4-5.659V2a2 2 0 1 0-4 0m2-1a1 1 0 0 1 1 1v.083a6 6 0 0 0-2 0V2a1 1 0 0 1 1-1m0 3a4 4 0 0 1 3.96 3.43.5.5 0 1 1-.99.14 3 3 0 0 0-5.94 0 .5.5 0 1 1-.99-.14A4 4 0 0 1 8 4M4.5 9h7a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5"
+                />
+              </svg>
+            </div>
+            <select
+              id="countries"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="luggage"
+            >
+              <option *ngFor="let item of luggages" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="relative z-0 w-full group">
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-people-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"
+                />
+              </svg>
+            </div>
+            <select
+              id="countries"
+              class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="passenger"
+            >
+              <option *ngFor="let item of passengers" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2 mb-2">
+        <div class="relative z-0 w-full group">
+          <div class="flex items-start">
+            <div class="flex items-center">
+              <input
+                id="remember"
+                type="checkbox"
+                formControlName="isReturn"
+                (click)="isreturn()"
+                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+              />
+              <label
+                for="remember"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >Wanna Return</label
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="returns === true">
+        <div class="grid md:grid-cols-3 md:gap-4 gap-2 mb-2">
+          <div class="relative z-0 w-full group">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-calendar-date-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zm5.402 9.746c.625 0 1.184-.484 1.184-1.18 0-.832-.527-1.23-1.16-1.23-.586 0-1.168.387-1.168 1.21 0 .817.543 1.2 1.144 1.2"
+                  />
+                  <path
+                    d="M16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2m-6.664-1.21c-1.11 0-1.656-.767-1.703-1.407h.683c.043.37.387.82 1.051.82.844 0 1.301-.848 1.305-2.164h-.027c-.153.414-.637.79-1.383.79-.852 0-1.676-.61-1.676-1.77 0-1.137.871-1.809 1.797-1.809 1.172 0 1.953.734 1.953 2.668 0 1.805-.742 2.871-2 2.871zm-2.89-5.435v5.332H5.77V8.079h-.012c-.29.156-.883.52-1.258.777V8.16a13 13 0 0 1 1.313-.805h.632z"
+                  />
+                </svg>
+              </div>
+              <input
+                datepicker
+                id="default-datepicker"
+                type="date"
+                class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Select date"
+                formControlName="returnDate"
+              />
+            </div>
+          </div>
+          <div class="relative z-0 w-full group">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-people-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"
+                  />
+                </svg>
+              </div>
+              <select
+                id="countries"
+                class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                formControlName="returnPassengers"
+              >
+                <option *ngFor="let item of passengers" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="relative z-0 w-full group">
+            <div class="relative">
+              <div
+                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-backpack-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M5 13v-3h4v.5a.5.5 0 0 0 1 0V10h1v3z" />
+                  <path
+                    d="M6 2v.341C3.67 3.165 2 5.388 2 8v5.5A2.5 2.5 0 0 0 4.5 16h7a2.5 2.5 0 0 0 2.5-2.5V8a6 6 0 0 0-4-5.659V2a2 2 0 1 0-4 0m2-1a1 1 0 0 1 1 1v.083a6 6 0 0 0-2 0V2a1 1 0 0 1 1-1m0 3a4 4 0 0 1 3.96 3.43.5.5 0 1 1-.99.14 3 3 0 0 0-5.94 0 .5.5 0 1 1-.99-.14A4 4 0 0 1 8 4M4.5 9h7a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5"
+                  />
+                </svg>
+              </div>
+              <select
+                id="countries"
+                class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                formControlName="returnLagguages"
+              >
+                <option *ngFor="let item of luggages" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <button
+        type="submit"
+        class="text-white bg-primary w-full hover:bg-primary focus:ring-4 focus:ring-blue-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary dark:hover:bg-primary dark:focus:ring-blue-800 mb-4"
+        (click)="submits()"
+      >
+        <div *ngIf="!isLoader">Submit</div>
+        <div *ngIf="isLoader">
+          <p-progressSpinner
+            [style]="{ width: '25px', height: '25px', color: '#f4bd00' }"
+            strokeWidth="8"
+          ></p-progressSpinner>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>
+
+<ng-template #firstFieldTemplate>
+  <form [formGroup]="bookingForm">
+    <div class="relative z-0 w-full group">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+        *ngIf="checkNumber == 0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-airplane-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
+          />
+        </svg>
+      </div>
+
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+        *ngIf="checkNumber != 0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-compass-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M15.5 8.516a7.5 7.5 0 1 1-9.462-7.24A1 1 0 0 1 7 0h2a1 1 0 0 1 .962 1.276 7.5 7.5 0 0 1 5.538 7.24m-3.61-3.905L6.94 7.439 4.11 12.39l4.95-2.828 2.828-4.95z"
+          />
+        </svg>
+      </div>
+      <!-- <span class="bg-white p-3 text-black rounded-l-lg border border-gray-300">
+        <i
+          class="{{
+            checkNumber == 0 ? 'bi bi-airplane-fill' : 'bi bi-geo-alt-fill'
+          }}"
+        ></i>
+      </span> -->
+      <input
+        type="text"
+        class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Select Your PickUp Place"
+        #inputFieldOne
+        formControlName="fromAirport"
+        [readonly]="checkNumber == 0"
+      />
+    </div>
+    <div *ngIf="isSubmitted">
+      <div *ngIf="bookingForm.get('fromAirport')?.invalid">
+        <div
+          class="text-red-500 text-xs"
+          *ngIf="bookingForm.get('fromAirport')?.hasError('required')"
+        >
+          Field is required.
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #secondFieldTemplate>
+  <form [formGroup]="bookingForm">
+    <div class="relative z-0 w-full group">
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+        *ngIf="checkNumber != 0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-airplane-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
+          />
+        </svg>
+      </div>
+
+      <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none"
+        *ngIf="checkNumber == 0"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-compass-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M15.5 8.516a7.5 7.5 0 1 1-9.462-7.24A1 1 0 0 1 7 0h2a1 1 0 0 1 .962 1.276 7.5 7.5 0 0 1 5.538 7.24m-3.61-3.905L6.94 7.439 4.11 12.39l4.95-2.828 2.828-4.95z"
+          />
+        </svg>
+      </div>
+      <!-- <div
+        class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none" *ngIf="checkNumber != 0 ? 'bi bi-airplane-fill' : 'bi bi-geo-alt-fill'"
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-airplane-fill" viewBox="0 0 16 16">
+        <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"/>
+      </svg>
+
+      </div> -->
+      <!-- <span class="bg-white p-3 text-black rounded-l-lg border border-gray-300">
+        <i
+          class="{{
+            checkNumber != 0 ? 'bi bi-airplane-fill' : 'bi bi-geo-alt-fill'
+          }}"
+        ></i>
+      </span> -->
+      <input
+        type="text"
+        class="bg-transparent dark:bg-transparent border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-transparent dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Select Your Drop Off Place"
+        #inputFieldTwo
+        formControlName="toAirport"
+        [readonly]="checkNumber == 1"
+      />
+    </div>
+    <div *ngIf="isSubmitted">
+      <div *ngIf="bookingForm.get('toAirport')?.invalid">
+        <div
+          class="text-red-500 text-xs"
+          *ngIf="bookingForm.get('toAirport')?.hasError('required')"
+        >
+          Field is required.
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<!-- <ng-template #verificationModal let-modal> -->
+<p-dialog
+  appendTo="body"
+  [modal]="true"
+  header="OTP Verification"
+  [(visible)]="visible"
+  [style]="{ width: '25rem' }"
+>
+  <div>
+    <button
+      type="button"
+      class="btn-close text-white"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <div class="text-center">
+      <h2 class="text-lg mb-2">
+        <label for="Email">Email Verification</label>
+      </h2>
+    </div>
+    <div class="flex justify-center text-center mb-2">
+      <div class="max-w-xs">
+        <code-input
+          [isCodeHidden]="false"
+          [isCharsCode]="false"
+          [codeLength]="4"
+          (codeChanged)="onCodeChanged($event)"
+          (codeCompleted)="onCodeCompleted($event, true)"
+        >
+        </code-input>
+        <p [ngClass]="messageColor ? 'text-green-500' : 'text-red-500 text-xs'">
+          {{ message }}
+        </p>
+      </div>
+    </div>
+    <div class="text-center">
+      <h2 class="text-lg mb-2">
+        <label for="Phone">Phone Number Verification</label>
+      </h2>
+    </div>
+    <div class="flex justify-center text-center">
+      <div class="max-w-xs">
+        <code-input
+          [isCodeHidden]="false"
+          [codeLength]="4"
+          [isCharsCode]="false"
+          (codeChanged)="onCodeChanged($event)"
+          (codeCompleted)="onCodeCompleted($event, false)"
+        >
+        </code-input>
+        <p [ngClass]="messageColor ? 'text-green-500' : 'text-red-500 text-xs'">
+          {{ message }}
+        </p>
+      </div>
+    </div>
+    <div class="flex justify-center text-center">
+      <div class="max-w-xs bg-primary p-4 text-white mt-4 rounded-lg">
+        <button (click)="verifyBtn()">Verify Code</button>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+<!-- </ng-template> -->
+
+<div class="card flex justify-center">
+  <p-toast
+    [showTransformOptions]="'translateY(100%)'"
+    [showTransitionOptions]="'1000ms'"
+    [hideTransitionOptions]="'1000ms'"
+    [showTransformOptions]="'translateX(100%)'"
+  ></p-toast>
+</div>

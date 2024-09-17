@@ -1,0 +1,22 @@
+::ng-deep .p-galleria .p-galleria-item-nav{
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 1px solid #43586a33;
+    border-radius: 50px;
+    background: none !important;
+    color: #2d3b4e;
+    transition:none !important
+}
+
+::ng-deep .p-galleria .p-galleria-item-nav:focus{
+    outline: none;
+    box-shadow: none;
+  }
+::ng-deep .p-galleria .p-galleria-item-nav:hover {
+    background: none !important;
+    color: #2d3b4e !important;
+  }
+::ng-deep .p-galleria .p-galleria-item-nav .p-icon-wrapper .p-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+  }

@@ -1,0 +1,97 @@
+// .radio-button-container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 24px;
+// }
+
+// /* Media query for screens smaller than 768px (mobile devices) */
+// @media (max-width: 767.98px) {
+//   .radio-button-container {
+//     flex-direction: column;
+//     gap: 12px; /* Adjust gap for smaller screens */
+//   }
+// }
+
+// .card-header h5,
+// h2 {
+//   font-weight: bolder;
+//   color: #02b521;
+// }
+// .card-footer button {
+//   background-color: #14696d;
+// }
+
+// .radio-button {
+//   position: relative;
+//   cursor: pointer;
+//   display: inline-block;
+//   // align-items: center;
+//   // justify-content: center;
+// }
+
+// .radio-button__input {
+//   position: absolute;
+//   opacity: 0;
+//   width: 0;
+//   height: 0;
+// }
+
+// .radio-button__label {
+//   display: inline-block;
+//   padding-left: 30px;
+//   // margin-bottom: 10px;
+//   position: relative;
+//   font-size: 15px;
+//   color: #f2f2f2;
+//   font-weight: 600;
+//   cursor: pointer;
+//   text-transform: capitalize;
+//   transition: all 0.3s ease;
+// }
+
+// .radio-button__custom {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 20px;
+//   height: 20px;
+//   border-radius: 50%;
+//   border: 2px solid #fff;
+//   transition: all 0.3s ease;
+// }
+
+// .radio-button__input:checked + .radio-button__label .radio-button__custom {
+//   background-color: #fff;
+//   border-color: transparent;
+//   transform: scale(0.8);
+//   box-shadow: 0 0 30px #00a55980;
+// }
+
+// .radio-button__input:checked + .radio-button__label {
+//   color: #fff;
+// }
+
+// .radio-button__label:hover .radio-button__custom {
+//   transform: scale(1.2);
+//   border: 2px solid #00a559;
+//   border-color: #00a559;
+//   box-shadow: 0 0 30px #00a55980;
+// }
+
+// .modal-body {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+// }
+
+// .ng-otp-input-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .ng-otp-input-field {
+//   text-align: center;
+//   margin: 0 5px;
+// }
